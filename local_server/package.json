@@ -13,6 +13,7 @@
     "prettier:ts": "prettier --write \"./src/**/*.ts\"",
     "prettier": "pnpm prettier:config --loglevel warn && pnpm prettier:ts --loglevel warn",
     "start": "node lib/index.js",
+    "dev": "nodemon lib/index.js",
     "restart-docker": "docker-compose down && docker-compose up -d"
   },
   "author": "jungai",
@@ -30,6 +31,7 @@
     "eslint": "^7.28.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
+    "nodemon": "^2.0.14",
     "prettier": "^2.3.0",
     "ts-jest": "^27.0.2",
     "typescript": "^4.3.2"
