@@ -35,6 +35,9 @@
   "dependencies": {
     "@ag1/nil": "^1.1.1",
     "fastify": "^3.22.1",
+    "fastify-cors": "^6.0.2",
+    "fastify-helmet": "^5.3.2",
+    "fastify-rate-limit": "^5.6.2",
     "pino-pretty": "^7.1.0"
   }
 }
