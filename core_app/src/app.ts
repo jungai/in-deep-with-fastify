@@ -1,4 +1,7 @@
 import Fastify from 'fastify';
+import cors from 'fastify-cors';
+import rateLimit from 'fastify-rate-limit';
+import helmet from 'fastify-helmet';
 
 export const fastify = Fastify({
     logger: {
@@ -6,7 +9,6 @@ export const fastify = Fastify({
         serializers: {
             req(request) {
                 return {
-                    requestId: request.id,
                     method: request.method,
                     url: request.url,
                     parameters: request.params,
@@ -17,9 +19,33 @@ export const fastify = Fastify({
     },
 });
 
-// Declare a route
-fastify.get('/', function (_request, reply) {
-    // console.log(`req -> ${request?.user as any}`);
-    // throw new Error('eiei');
-    reply.send({ hello: 'world' });
+// share plugin
+fastify.register(helmet);
+fastify.register(cors);
+fastify.register(rateLimit, {
+    max: 5,
+    timeWindow: '1 minute',
 });
+
+// route with plugin
+fastify.register(
+    function (fastify, _opts, done) {
+        fastify.get('/', function (_request, reply) {
+            reply.send({ msg: 'hello world v1 api' });
+        });
+
+        done();
+    },
+    { prefix: '/api/v1' },
+);
+
+fastify.register(
+    function (fastify, _opts, done) {
+        fastify.get('/', function (_request, reply) {
+            reply.send({ msg: 'hello world v2 api' });
+        });
+
+        done();
+    },
+    { prefix: '/api/v2' },
+);
