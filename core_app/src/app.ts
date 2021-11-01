@@ -25,17 +25,17 @@ export const fastify: IFastifyApp = Fastify({
     },
 });
 
+fastify.register(helmet);
+fastify.register(cors);
+fastify.register(rateLimit, {
+    max: 5,
+    timeWindow: '1 minute',
+});
+
 // route with plugin
 fastify.register(
     function (instance, _opts, done) {
         // share plugin
-        instance.register(helmet);
-        instance.register(cors);
-        instance.register(rateLimit, {
-            max: 5,
-            timeWindow: '1 minute',
-        });
-
         instance.addHook('onRequest', (req, reply, done) => {
             console.log('req', req.method);
 
