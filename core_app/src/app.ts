@@ -37,8 +37,6 @@ fastify.register(
     function (instance, _opts, done) {
         // share plugin
         instance.addHook('onRequest', (req, reply, done) => {
-            console.log('req', req.method);
-
             done();
         });
 
@@ -50,18 +48,41 @@ fastify.register(
         // });
 
         instance.get('/helloworld', function (_request, reply) {
-            // reply.send({ msg: 'hello world v1 api' });
-            const a = () => {
-                throw new Error('asdasd');
-            };
+            reply.send({ msg: 'hello world v1 api' });
+            // const a = () => {
+            //     throw new Error('asdasd');
+            // };
 
-            try {
-                a();
-                console.log('lol');
-            } catch (error) {
-                reply.send({ error: 'junior error' });
-            }
+            // try {
+            //     a();
+            //     console.log('lol');
+            // } catch (error) {
+            //     reply.send({ error: 'junior error' });
+            // }
         });
+
+        instance.get<{
+            Params: { id: number };
+        }>(
+            '/users/:id',
+            {
+                schema: {
+                    params: {
+                        type: 'object',
+                        required: ['id'],
+                        properties: {
+                            id: {
+                                type: 'number',
+                            },
+                        },
+                    },
+                },
+            },
+            (req, reply) => {
+                console.log(typeof req.params.id); // type is convert by schema(JSON schema) lol
+                reply.send({ result: `id is ${req.params.id}` });
+            },
+        );
 
         questions(instance);
 
