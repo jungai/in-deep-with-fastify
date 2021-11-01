@@ -21,6 +21,7 @@ importers:
       fastify-cors: ^6.0.2
       fastify-helmet: ^5.3.2
       fastify-rate-limit: ^5.6.2
+      fluent-json-schema: ^3.0.1
       pino-pretty: ^7.1.0
       prettier: ^2.3.0
       ts-jest: ^27.0.2
@@ -31,6 +32,7 @@ importers:
       fastify-cors: 6.0.2
       fastify-helmet: 5.3.2
       fastify-rate-limit: 5.6.2
+      fluent-json-schema: 3.0.1
       pino-pretty: 7.1.0
     devDependencies:
       '@babel/core': 7.15.8
@@ -2346,6 +2348,13 @@ packages:
   /flatted/3.2.2:
     resolution: {integrity: sha512-JaTY/wtrcSyvXJl4IMFHPKyFur1sE9AUqc0QnhOaJ0CxHtAoIV8pYDzeEfAaNEtGkOfq4gr3LBFmdXW5mOQFnA==}
     dev: true
+
+  /fluent-json-schema/3.0.1:
+    resolution: {integrity: sha512-fvPyZJnutj2Tt+VMO7Rp7dr2gnVZx8VgXZmL+vYNt2xrZnbFX+wGPg43lj6hdUPlaCmmI+d6XQlQukwFxncPWQ==}
+    engines: {node: '>=12'}
+    dependencies:
+      deepmerge: 4.2.2
+    dev: false
 
   /forwarded/0.2.0:
     resolution: {integrity: sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==}
